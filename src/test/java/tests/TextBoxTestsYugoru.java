@@ -1,9 +1,15 @@
 package tests;
 
+import config.WebConfig;
+import helpers.WebHelper;
 import io.qameta.allure.Owner;
+import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -17,6 +23,14 @@ import static io.qameta.allure.Allure.step;
 
 @DisplayName("Форма регистрации студента")
 public class TextBoxTestsYugoru extends TestBase {
+
+    @BeforeAll
+    public void initDrivers() {
+        WebDriver driver = new FirefoxDriver();
+        WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
+        WebHelper helper = new WebHelper();
+        helper.initDriver(config, driver);
+    }
 
     String firstName = "Ada",
             lastName = "Lovelace",
@@ -172,4 +186,5 @@ public class TextBoxTestsYugoru extends TestBase {
             $(".modal-content").find(byCssSelector("#closeLargeModal")).click();
         });
     }
+
 }

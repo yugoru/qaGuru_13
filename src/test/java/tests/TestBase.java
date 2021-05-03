@@ -1,7 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import config.DriverConfig;
+import config.WebConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -14,7 +14,7 @@ import static helpers.AttachmentHelper.*;
 
 public class TestBase {
 
-    static DriverConfig driverConfig = ConfigFactory.create(DriverConfig.class);
+    static WebConfig webConfig = ConfigFactory.create(WebConfig.class);
 
     @BeforeAll
     static void setup() {
@@ -34,8 +34,8 @@ public class TestBase {
         String remoteWebDriver = System.getProperty("remote.web.driver");
 
         if(remoteWebDriver != null) {
-            String user = driverConfig.remoteWebUser();
-            String password = driverConfig.remoteWebPassword();
+            String user = webConfig.remoteWebUser();
+            String password = webConfig.remoteWebPassword();
             Configuration.remote = String.format(remoteWebDriver, user, password);
 
             System.out.println(user);
