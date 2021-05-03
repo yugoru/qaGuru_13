@@ -14,7 +14,9 @@ public interface WebConfig extends Config {
     String remoteWebPassword();
 
     @Key("base.url")
-    String baseUrl();
+    static String baseUrl() {
+        return baseUrl();
+    }
 
     @Key("webdriver.remote")
     boolean isRemote();

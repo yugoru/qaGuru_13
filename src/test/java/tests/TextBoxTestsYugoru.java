@@ -4,10 +4,7 @@ import config.WebConfig;
 import helpers.WebHelper;
 import io.qameta.allure.Owner;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -25,12 +22,13 @@ import static io.qameta.allure.Allure.step;
 @DisplayName("Форма регистрации студента")
 public class TextBoxTestsYugoru extends TestBase {
 
-    @BeforeAll
-    public static void initDrivers() {
+    @BeforeEach
+    public void initDrivers() {
         WebDriver driver = new ChromeDriver();
         WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
         WebHelper helper = new WebHelper();
         helper.initDriver(config, driver);
+        helper.configureDriver(WebConfig.baseUrl());
     }
 
     String firstName = "Ada",
