@@ -2,6 +2,7 @@ package helpers;
 
 import com.codeborne.selenide.Configuration;
 import config.WebConfig;
+import org.aeonbits.owner.Config;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,7 +10,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static org.aeonbits.owner.Config.LoadType.MERGE;
 
+@Config.LoadPolicy(MERGE)
+@Config.Sources({"system:properties",
+        "classpath:localWebConfig.properties",
+        "classpath:remoteWebConfig.properties"})
 public class WebHelper {
 
     public WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());

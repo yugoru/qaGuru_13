@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
@@ -25,8 +26,8 @@ import static io.qameta.allure.Allure.step;
 public class TextBoxTestsYugoru extends TestBase {
 
     @BeforeAll
-    public void initDrivers() {
-        WebDriver driver = new FirefoxDriver();
+    public static void initDrivers() {
+        WebDriver driver = new ChromeDriver();
         WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
         WebHelper helper = new WebHelper();
         helper.initDriver(config, driver);
