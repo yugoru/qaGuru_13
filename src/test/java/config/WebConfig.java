@@ -4,7 +4,14 @@ import org.aeonbits.owner.Config;
 
 import java.net.URL;
 
-@Config.Sources({ "classpath:config/driver.properties" })
+import static org.aeonbits.owner.Config.LoadType.MERGE;
+
+@Config.LoadPolicy(MERGE)
+@Config.Sources({"system:properties",
+        "classpath:config/localWebConfig.properties",
+        "classpath:config/remoteWebConfig.properties",
+        "classpath:config/driver.properties" })
+
 public interface WebConfig extends Config {
 
     @Key("remote.web.user")
